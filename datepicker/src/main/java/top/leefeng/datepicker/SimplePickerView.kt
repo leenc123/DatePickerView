@@ -137,6 +137,10 @@ class SimplePickerView @JvmOverloads constructor(
                 layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight)
                 gravity = Gravity.CENTER
                 setTextColor(textcolor)
+                // 移除默认内边距
+                setIncludeFontPadding(false)
+                // 设置行高为字体高度
+                setLineHeight(0)
                 setTypeface(Typeface.DEFAULT, Typeface.BOLD)
                 setTextSize(TypedValue.COMPLEX_UNIT_PX, textsize)
             }) {}
