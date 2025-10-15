@@ -32,6 +32,7 @@ class SimplePickerView @JvmOverloads constructor(
     private var textSize: Float
     private var textColor: Int
     private var showSize: Int
+    private var spvGravity: Int
     private var listener: ((Int) -> Unit)? = null
     var drawListener: DrawListener? = null
 
@@ -41,7 +42,7 @@ class SimplePickerView @JvmOverloads constructor(
         showSize = it.getInt(R.styleable.SimplePickerView_spvShowSize, 5)
         if (showSize % 2 == 0 || showSize < 3) throw Throwable("dpvDateSize value must be  odd number and must be bigger than 2")
         textColor = it.getColor(R.styleable.SimplePickerView_spvTextColor, Color.BLACK)
-
+        spvGravity = it.getInt(R.styleable.SimplePickerView_spvGravity, Gravity.CENTER)
         lineStrokeWidth = it.getDimension(
             R.styleable.SimplePickerView_spvLineWidth,
             resources.displayMetrics.density
@@ -78,7 +79,8 @@ class SimplePickerView @JvmOverloads constructor(
     fun setData(list: List<String>, position: Int, scrollBack: ((Int) -> Unit)? = null) {
         post {
             listener = scrollBack
-            adapter = SimplePickerAdapter(list, showSize, textColor, textSize, cellHeight)
+            adapter =
+                SimplePickerAdapter(list, showSize, textColor, textSize, cellHeight, spvGravity)
             val p = if (position < 0) 0 else position
             scrollToPosition(p)
             scrollBack?.invoke(p)
@@ -129,13 +131,14 @@ class SimplePickerView @JvmOverloads constructor(
         val showSize: Int,
         val textcolor: Int,
         val textsize: Float,
-        var itemHeight: Int
+        var itemHeight: Int,
+        var spvGravity: Int
     ) :
         Adapter<ViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             return object : ViewHolder(TextView(parent.context).apply {
                 layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, itemHeight)
-                gravity = Gravity.CENTER
+                gravity = spvGravity
                 setTextColor(textcolor)
                 // 移除默认内边距
                 setIncludeFontPadding(false)
