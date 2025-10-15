@@ -1,5 +1,6 @@
 # Android 日期选择器 滚轮样式的选择器
-DatePickerView [![](https://jitpack.io/v/limxing/DatePickerView.svg)](https://jitpack.io/#limxing/DatePickerView)
+DatePickerView [![](https://jitpack.io/v/leenc123/DatePickerView.svg)](https://jitpack.io/#leenc123/DatePickerView)
+
 
 
 <img src="https://img-blog.csdnimg.cn/20210111162909836.gif" width="279" height="258"/> <img src="https://img-blog.csdnimg.cn/20210112172759805.gif" width="279" height="258"/>
